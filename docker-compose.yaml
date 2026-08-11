@@ -1,0 +1,44 @@
+services:
+  onboarding-backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    environment:
+      HTTP_HOST: "0.0.0.0"
+      HTTP_PORT: "8080"
+      HTTP_ALLOWED_ORIGINS: "http://localhost:3000,http://localhost:3001"
+      HTTP_READ_HEADER_TIMEOUT: 5s
+      HTTP_READ_TIMEOUT: 15s
+      HTTP_WRITE_TIMEOUT: 30s
+      HTTP_IDLE_TIMEOUT: 60s
+      HTTP_SHUTDOWN_TIME: 30s
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+      POSTGRES_DB: onboarding
+      POSTGRES_USER: onboarding_user
+      POSTGRES_PASSWORD: "12345"
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-admintoken}
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: onboarding
+      POSTGRES_USER: onboarding_user
+      POSTGRES_PASSWORD: "12345"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U onboarding_user -d onboarding"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

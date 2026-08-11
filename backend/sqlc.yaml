@@ -1,0 +1,147 @@
+version: "2"
+
+sql:
+  - engine: "postgresql"
+    queries: "internal/tracking/repository/event/queries.sql"
+    schema: "migrations/schemes"
+    gen:
+      go:
+        package: "event"
+        out: "internal/tracking/repository/event/sqlc"
+        sql_package: "pgx/v5"
+        emit_json_tags: true
+        emit_interface: true
+        omit_unused_structs: true
+        overrides:
+          - db_type: "uuid"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
+  - engine: "postgresql"
+    queries: "internal/tracking/repository/session/queries.sql"
+    schema: "migrations/schemes"
+    gen:
+      go:
+        package: "session"
+        out: "internal/tracking/repository/session/sqlc"
+        sql_package: "pgx/v5"
+        emit_json_tags: true
+        emit_interface: true
+        omit_unused_structs: true
+        overrides:
+          - db_type: "uuid"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
+  - engine: "postgresql"
+    queries: "internal/tracking/repository/scenario/queries.sql"
+    schema: "migrations/schemes"
+    gen:
+      go:
+        package: "scenario"
+        out: "internal/tracking/repository/scenario/sqlc"
+        sql_package: "pgx/v5"
+        emit_json_tags: true
+        emit_interface: true
+        omit_unused_structs: true
+        overrides:
+          - db_type: "uuid"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
+  - engine: "postgresql"
+    queries: "internal/tracking/repository/step/queries.sql"
+    schema: "migrations/schemes"
+    gen:
+      go:
+        package: "step"
+        out: "internal/tracking/repository/step/sqlc"
+        sql_package: "pgx/v5"
+        emit_json_tags: true
+        emit_interface: true
+        omit_unused_structs: true
+        overrides:
+          - db_type: "uuid"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
+  - engine: "postgresql"
+    queries: "internal/runtime/repository/scenario/queries.sql"
+    schema: "migrations/schemes"
+    gen:
+      go:
+        package: "scenario"
+        out: "internal/runtime/repository/scenario/sqlc"
+        sql_package: "pgx/v5"
+        emit_json_tags: true
+        emit_interface: true
+        omit_unused_structs: true
+        overrides:
+          - db_type: "uuid"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
+  - engine: "postgresql"
+    queries: "internal/runtime/repository/session/queries.sql"
+    schema: "migrations/schemes"
+    gen:
+      go:
+        package: "session"
+        out: "internal/runtime/repository/session/sqlc"
+        sql_package: "pgx/v5"
+        emit_json_tags: true
+        emit_interface: true
+        omit_unused_structs: true
+        overrides:
+          - db_type: "uuid"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
+  - engine: "postgresql"
+    queries: "internal/runtime/repository/step/queries.sql"
+    schema: "migrations/schemes"
+    gen:
+      go:
+        package: "step"
+        out: "internal/runtime/repository/step/sqlc"
+        sql_package: "pgx/v5"
+        emit_json_tags: true
+        emit_interface: true
+        omit_unused_structs: true
+        overrides:
+          - db_type: "uuid"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
+  - engine: "postgresql"
+    queries: "internal/runtime/repository/token/queries.sql"
+    schema: "migrations/schemes"
+    gen:
+      go:
+        package: "token"
+        out: "internal/runtime/repository/token/sqlc"
+        sql_package: "pgx/v5"
+        emit_json_tags: true
+        emit_interface: true
+        omit_unused_structs: true
+        overrides:
+          - db_type: "uuid"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
+  - engine: "postgresql"
+    queries: "internal/runtime/repository/projects/queries.sql"
+    schema: "migrations/schemes"
+    gen:
+      go:
+        package: "projects"
+        out: "internal/runtime/repository/projects/sqlc"
+        sql_package: "pgx/v5"
+        emit_json_tags: true
+        emit_interface: true
+        omit_unused_structs: true
+        overrides:
+          - db_type: "uuid"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
